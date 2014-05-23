@@ -45,11 +45,11 @@ end
 # gem 'debugger', group: [:development, :test]
 gem 'bundler'
 
-gem 'devise', github: 'plataformatec/devise'
+gem 'devise', git: 'https://github.com/plataformatec/devise.git'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'bootstrap-sass', github: 'twbs/bootstrap-sass'
+gem 'bootstrap-sass', git: 'https://github.com/twbs/bootstrap-sass.git'
 gem 'bootstrap-sass-extras'
-gem 'acts_as_votable', github: 'ryanto/acts_as_votable'
-gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'acts_as_votable', git: 'https://github.com/ryanto/acts_as_votable.git'
+gem 'activeadmin', git: 'https://github.com/gregbell/active_admin.git'
 gem 'validates_formatting_of'
