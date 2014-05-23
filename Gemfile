@@ -53,3 +53,8 @@ gem 'bootstrap-sass-extras'
 gem 'acts_as_votable', git: 'https://github.com/ryanto/acts_as_votable.git'
 gem 'activeadmin', git: 'https://github.com/gregbell/active_admin.git'
 gem 'validates_formatting_of'
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
