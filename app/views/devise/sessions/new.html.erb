@@ -6,7 +6,7 @@
                                                                                                                                         
   
   <div class="form-group">
-    <%= f.label :email, class: "control-label col-md-4" %>
+    <%= f.label :email, "隊長 email", class: "control-label col-md-4" %>
     <div class="col-md-8">
       <%= f.email_field :email, class: "text-field form-control", html: {spellcheck: "false"} %>
     </div>
@@ -35,10 +35,13 @@
     </div>
   </div>
 
-  <div class="form-group">
-    <div class="col-md-offset-4 col-md-8">
-      <%= render "devise/shared/links" %>
-    </div>
-  </div>
+  <% if false %>
+      <div class="form-group">
+        <div class="col-md-offset-4 col-md-8">
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+  <% end %>
+
 
 <% end %>

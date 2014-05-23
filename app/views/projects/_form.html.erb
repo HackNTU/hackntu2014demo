@@ -1,14 +1,14 @@
 <%= form_for @project, :html => { :class => 'form-horizontal form-model' } do |f| %>
   <div class="form-group">
-    <%= f.label :title, :class => 'control-label col-md-2' %>
+    <%= f.label :title, "作品標題", :class => 'control-label col-md-2' %>
     <div class="col-md-10">
       <%= f.text_field :title, :class => 'text-field form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :description, :class => 'control-label col-md-2' %>
+    <%= f.label :description, "作品敘述", :class => 'control-label col-md-2' %>
     <div class="col-md-10">
-      <%= f.text_field :description, :class => 'text-field form-control' %>
+      <%= f.text_area :description, :class => 'text-field form-control' %>
     </div>
   </div>
 

@@ -8,12 +8,13 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.where(:user => current_user).all
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
+    redirect_to Project, alert: "不要亂看！" if @project.user != current_user
   end
 
   # GET /projects/new
@@ -28,6 +29,11 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
+    if Project.where(:user => current_user).count >= 1
+      redirect_to Project, alert: "你已經有專案了喲"
+      return
+    end
+    
     @project = Project.new(project_params)
     @project.user = current_user
 
@@ -45,6 +51,8 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+    redirect_to root_url, notice: "Ooos" if @project.user != current_user
+    
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
@@ -59,10 +67,17 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
-    @project.destroy
-    respond_to do |format|
-      format.html { redirect_to projects_url }
-      format.json { head :no_content }
+    if @project.user == current_user    
+      @project.destroy
+      respond_to do |format|
+        format.html { redirect_to projects_url }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to action: 'index' }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
+      end
     end
   end
 
