@@ -84,20 +84,14 @@ class ProjectsController < ApplicationController
 
   #->Prelang (voting/acts_as_votable)
   def vote
-
-    direction = params[:direction]
-
-    # Make sure we've specified a direction
-    raise "No direction parameter specified to #vote action." unless direction
-
-    # Make sure the direction is valid
-    unless ["like", "bad"].member? direction
-      raise "Direction '#{direction}' is not a valid direction for vote method."
+    # check if user has vote this
+    if current_user.votes.count > 0
+      redirect_to root_url, :alert => "不能重複投票喲 ^.<"
+    else
+      current_user.up_votes @project
+      redirect_to root_url
     end
-
-    @project.vote voter: current_user, vote: direction
-
-    redirect_to index
+    
   end
 
 

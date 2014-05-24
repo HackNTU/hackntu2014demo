@@ -1,11 +1,13 @@
 Hackntu2014demo::Application.routes.draw do
   get "landings/index"
-  resources :projects#do
+  resources :projects do
   #->Prelang (voting/acts_as_votable)
-  #member do
-  #  get "vote"
-  #end
-  #end
+    member do
+      post "vote"
+    end
+  end
+  
+  get 'vote' => 'landings#vote'
 
 
   devise_for :admin_users, ActiveAdmin::Devise.config

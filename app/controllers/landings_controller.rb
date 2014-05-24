@@ -6,4 +6,8 @@ class LandingsController < ApplicationController
       redirect_to new_user_session_path
     end
   end
+  
+  def vote
+    @projects = Project.order(:demo_index => :asc)
+  end
 end

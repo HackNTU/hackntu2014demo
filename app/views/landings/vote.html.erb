@@ -1,0 +1,39 @@
+<%- model_class = Project -%>
+<div class="page-header">
+  <h1>HackNTU 2014 觀眾投票系統 
+    <% unless current_user %>
+      <%= link_to user_omniauth_authorize_path(:facebook), :class => "btn btn-lg btn-primary" do %>
+        登入投票
+      <% end %>
+    <% end %>
+  </h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Demo 順序</th>
+      <th>隊名</th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= project.demo_index %></td>
+        <td><%= project.user.name %></td>
+        <td><%= project.title %></td>
+        <td><%= project.description %></td>
+        <td>
+          <% if current_user && current_user.votes.size == 0 %>
+          <%= link_to vote_project_path(project), :method => :post, :class => 'btn btn-info btn-sm' do %>
+            投下神聖的一票
+          <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
