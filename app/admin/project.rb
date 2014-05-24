@@ -1,5 +1,5 @@
 ActiveAdmin.register Project do
-  permit_params :title, :description
+  permit_params :title, :description, :demo_index
 
   
   # See permitted parameters documentation:
