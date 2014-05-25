@@ -9,6 +9,10 @@
   </h1>
 </div>
 
+<% if current_user && current_user.votes.count > 0 %>
+  <h2>你已經投了: <strong><%= current_user.votes.first.votable.title %></strong></h2>
+<% end %>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -22,13 +26,14 @@
   <tbody>
     <% @projects.each do |project| %>
       <tr>
-        <td><%= project.demo_index %></td>
+        <td><%= project.demo_index %>
+        </td>
         <td><%= project.user.name %></td>
         <td><%= project.title %></td>
         <td><%= project.description %></td>
         <td>
           <% if current_user && current_user.votes.size == 0 %>
-          <%= link_to vote_project_path(project), :method => :post, :class => 'btn btn-info btn-sm' do %>
+          <%= link_to vote_project_path(project), :method => :post, :class => 'btn btn-info btn-sm', :data => { :confirm => "確認要投給 '#{project.title}', 投完不能更改喲" } do %>
             投下神聖的一票
           <% end %>
           <% end %>

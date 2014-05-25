@@ -22,4 +22,8 @@ class ApplicationController < ActionController::Base
       redirect_to fallback_redirect, flash: {error: "You must be signed in to view this page."}
     end
   end
+  
+  def after_sign_in_path_for(resource)
+    session[:previous_url] || "/vote"
+  end
 end

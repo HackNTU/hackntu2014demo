@@ -86,12 +86,11 @@ class ProjectsController < ApplicationController
   def vote
     # check if user has vote this
     if current_user.votes.count > 0
-      redirect_to root_url, :alert => "不能重複投票喲 ^.<"
+      redirect_to "/vote", :alert => "不能重複投票喲 ^.<"
     else
       current_user.up_votes @project
-      redirect_to root_url
+      redirect_to "/vote"
     end
-    
   end
 
 
